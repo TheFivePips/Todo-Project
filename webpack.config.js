@@ -15,6 +15,8 @@ module.exports = {
         new HtmlWebpackPlugin({
     
           title: 'Todo Project',
+          filename: 'index.html',
+          template: 'src/template.html'
     
         }),
     
