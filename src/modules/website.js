@@ -33,7 +33,20 @@ function createSideBar(){
     const projectFolder = document.createElement('div')
     projectFolder.classList.add('project-folder')
 
+    // defualt project
+    const defualtProject = document.createElement('div')
+    const defaultTitle = document.createElement('h4')
+    defaultTitle.textContent = "Project 1"
+
+    defualtProject.appendChild(defaultTitle)
+
     // project folder should have an add-folder button of some sort
+    const addProjectBtn = document.createElement('button')
+    addProjectBtn.classList.add('addprojectbtn')
+    addProjectBtn.textContent = "+"
+
+    projectFolder.appendChild(defualtProject)
+    projectFolder.appendChild(addProjectBtn)
 
     sideBar.appendChild(projectTitle)
     sideBar.appendChild(projectFolder)
@@ -50,6 +63,13 @@ function createMain() {
 
     // this is where the todos will populate for a given project
     // main needs a button that will create new todos
+    const addTodoBtn = document.createElement('button')
+    addTodoBtn.classList.add('addtodobtn')
+    addTodoBtn.textContent = "+"
+    // this button needs to populate a form that when submitted is rendered to the page before the button
+
+
+    main.appendChild(addTodoBtn)
     return main
 }
 
