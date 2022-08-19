@@ -65,11 +65,10 @@ function createSideBar(){
         event.preventDefault()
         // this should call the create a new project fucntion and return a btn that we can then add to the dom. 
         
-        // const projects = document.querySelectorAll('.project')
-        // console.log(projects[-1]);
-
+      console.log(projectFolder.lastChild);
+        
         projectFolder.appendChild(createNewProject())
-        console.log(projectFolder);
+        // const projects = document.querySelectorAll('.project')
 
 
         document.getElementById('newProjectName').value = ""
@@ -80,11 +79,12 @@ function createSideBar(){
     addProjectForm.appendChild(addProjectBtn)
 
     // projectFolder.appendChild(defualtProject)
-    projectFolder.appendChild(addProjectForm)
+    // projectFolder.appendChild(addProjectForm)
 
    
 
     sideBar.appendChild(projectTitle)
+    sideBar.appendChild(addProjectForm)
     sideBar.appendChild(projectFolder)
 
     // this is where different projects will populate
