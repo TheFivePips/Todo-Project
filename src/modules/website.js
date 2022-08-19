@@ -3,6 +3,7 @@
 // it will export an initializeWebsite fucntion at the end that will be imported by index.js and ran from there
 import Logo from '../assets/StrykThru.png'
 
+
 function createHeader(){
     const header = document.createElement('header')
     header.classList.add('header')
@@ -34,19 +35,37 @@ function createSideBar(){
     projectFolder.classList.add('project-folder')
 
     // defualt project
-    const defualtProject = document.createElement('div')
-    const defaultTitle = document.createElement('h4')
-    defaultTitle.textContent = "Project 1"
+    const defualtProject = document.createElement('button')
+    defualtProject.classList.add('defaultProject')
+    defualtProject.textContent = 'Project 1'
+    defualtProject.classList.add('active')
 
-    defualtProject.appendChild(defaultTitle)
+    
+    const addProjectForm = document.createElement('form')
+    addProjectForm.classList.add('projectForm')
 
-    // project folder should have an add-folder button of some sort
+    const projectInput = document.createElement('input')
+    projectInput.setAttribute.type = 'text'
+
+    
     const addProjectBtn = document.createElement('button')
     addProjectBtn.classList.add('addprojectbtn')
+    addProjectBtn.setAttribute.type = "submit"
+    addProjectBtn.setAttribute.value = "submit"
+
     addProjectBtn.textContent = "+"
+    addProjectBtn.addEventListener("click", function() {
+        // this should call the create a new project fucntion and return a btn that we can then add to the dom
+    })
+    
+    addProjectForm.appendChild(projectInput)
+    addProjectForm.appendChild(addProjectBtn)
 
     projectFolder.appendChild(defualtProject)
-    projectFolder.appendChild(addProjectBtn)
+
+    projectFolder.appendChild(addProjectForm)
+
+   
 
     sideBar.appendChild(projectTitle)
     sideBar.appendChild(projectFolder)
