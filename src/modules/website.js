@@ -91,16 +91,37 @@ function createMain() {
     const addTodoDate = document.createElement('input')
     addTodoDate.classList.add('addtododate')
     addTodoDate.setAttribute('type', 'date')
-    
+
+    const addTodoPriority = document.createElement('select')
+    // might need to change the class to an id and add a name 
+    addTodoPriority.classList.add('addtodopriority')
+
+    const priority1 = document.createElement('option')
+    priority1.textContent = "High priority"
+    priority1.setAttribute("value", 'High priority')
+
+    const priority2 = document.createElement('option')
+    priority2.textContent = "Mid priority"
+    priority2.setAttribute("value", 'Mid priority')
+
+    const priority3 = document.createElement('option')
+    priority3.textContent = "Low priority"
+    priority3.setAttribute("value", 'Low priority')
+
+    addTodoPriority.appendChild(priority1)
+    addTodoPriority.appendChild(priority2)
+    addTodoPriority.appendChild(priority3)
+
     
     const addTodoBtn = document.createElement('button')
     addTodoBtn.classList.add('addtodobtn')
     addTodoBtn.textContent = "+"
     addTodoBtn.setAttribute('type', 'submit')
-    // this button needs to populate a form that when submitted is rendered to the page before the button
+    // this button needs to render a new todo and save the object in the relevant project array
     
     addTodoForm.appendChild(addTodoInput)
     addTodoForm.appendChild(addTodoDate)
+    addTodoForm.appendChild(addTodoPriority)
     addTodoForm.appendChild(addTodoBtn)
 
     main.appendChild(addTodoForm)
