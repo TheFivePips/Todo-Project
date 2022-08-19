@@ -1,5 +1,5 @@
-// this is the base webstie with no todos or projects
-// it needs to build the framework for the rest of the sites functionality
+// this is the base webstie with no todos or dynamically created projects
+// it is the framework for the rest of the sites functionality
 // it will export an initializeWebsite fucntion at the end that will be imported by index.js and ran from there
 import Logo from '../assets/StrykThru.png'
 
@@ -50,12 +50,12 @@ function createSideBar(){
     
     const addProjectBtn = document.createElement('button')
     addProjectBtn.classList.add('addprojectbtn')
-    addProjectBtn.setAttribute.type = "submit"
-    addProjectBtn.setAttribute.value = "submit"
+    addProjectBtn.setAttribute('type', 'submit')
+    addProjectBtn.setAttribute('value', 'submit')
 
     addProjectBtn.textContent = "+"
     addProjectBtn.addEventListener("click", function() {
-        // this should call the create a new project fucntion and return a btn that we can then add to the dom
+        // this should call the create a new project fucntion and return a btn that we can then add to the dom. this should also create an empty array that we will use to store the todo objects for that project. maybe use uuid?
     })
     
     addProjectForm.appendChild(projectInput)
@@ -82,13 +82,28 @@ function createMain() {
 
     // this is where the todos will populate for a given project
     // main needs a button that will create new todos
+    const addTodoForm = document.createElement('form')
+    addTodoForm.classList.add('addtodoform')
+
+    const addTodoInput = document.createElement('input')
+    addTodoInput.setAttribute('type', 'text')
+    
+    const addTodoDate = document.createElement('input')
+    addTodoDate.classList.add('addtododate')
+    addTodoDate.setAttribute('type', 'date')
+    
+    
     const addTodoBtn = document.createElement('button')
     addTodoBtn.classList.add('addtodobtn')
     addTodoBtn.textContent = "+"
+    addTodoBtn.setAttribute('type', 'submit')
     // this button needs to populate a form that when submitted is rendered to the page before the button
+    
+    addTodoForm.appendChild(addTodoInput)
+    addTodoForm.appendChild(addTodoDate)
+    addTodoForm.appendChild(addTodoBtn)
 
-
-    main.appendChild(addTodoBtn)
+    main.appendChild(addTodoForm)
     return main
 }
 
@@ -99,6 +114,7 @@ function createFooter(){
 
     return footer
 }
+
 function createContent(){
     const content = document.createElement('div')
     content.classList.add('content')
