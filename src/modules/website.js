@@ -2,6 +2,7 @@
 // it is the framework for the rest of the sites functionality
 // it will export an initializeWebsite fucntion at the end that will be imported by index.js and ran from there
 import Logo from '../assets/StrykThru.png'
+import createNewProject  from './createProject'
 
 
 function createHeader(){
@@ -35,17 +36,23 @@ function createSideBar(){
     projectFolder.classList.add('project-folder')
 
     // defualt project
-    const defualtProject = document.createElement('button')
-    defualtProject.classList.add('defaultProject')
-    defualtProject.textContent = 'Project 1'
-    defualtProject.classList.add('active')
+    // const defualtProject = document.createElement('button')
+    // defualtProject.classList.add('defaultProject')
+    // defualtProject.textContent = 'Project 1'
+    // defualtProject.classList.add('active')
 
     
     const addProjectForm = document.createElement('form')
     addProjectForm.classList.add('projectForm')
 
     const projectInput = document.createElement('input')
-    projectInput.setAttribute.type = 'text'
+    projectInput.setAttribute('name','newProjectName')
+    projectInput.setAttribute('id','newProjectName')
+
+
+    projectInput.setAttribute('type','text')
+    projectInput.setAttribute('placeholder','New Project Name')
+
 
     
     const addProjectBtn = document.createElement('button')
@@ -54,15 +61,25 @@ function createSideBar(){
     addProjectBtn.setAttribute('value', 'submit')
 
     addProjectBtn.textContent = "+"
-    addProjectBtn.addEventListener("click", function() {
-        // this should call the create a new project fucntion and return a btn that we can then add to the dom. this should also create an empty array that we will use to store the todo objects for that project. maybe use uuid?
+    addProjectBtn.addEventListener("click", function(event) {
+        event.preventDefault()
+        // this should call the create a new project fucntion and return a btn that we can then add to the dom. 
+        
+        // const projects = document.querySelectorAll('.project')
+        // console.log(projects[-1]);
+
+        projectFolder.appendChild(createNewProject())
+        console.log(projectFolder);
+
+
+        document.getElementById('newProjectName').value = ""
+        // this should also create an empty array that we will use to store the todo objects for that project. this might be done in a seperate function however. maybe use uuid?
     })
     
     addProjectForm.appendChild(projectInput)
     addProjectForm.appendChild(addProjectBtn)
 
-    projectFolder.appendChild(defualtProject)
-
+    // projectFolder.appendChild(defualtProject)
     projectFolder.appendChild(addProjectForm)
 
    
@@ -87,10 +104,13 @@ function createMain() {
 
     const addTodoInput = document.createElement('input')
     addTodoInput.setAttribute('type', 'text')
+    addTodoInput.setAttribute('placeholder', 'New Todo Item')
     
     const addTodoDate = document.createElement('input')
     addTodoDate.classList.add('addtododate')
     addTodoDate.setAttribute('type', 'date')
+    
+
 
     const addTodoPriority = document.createElement('select')
     // might need to change the class to an id and add a name 
