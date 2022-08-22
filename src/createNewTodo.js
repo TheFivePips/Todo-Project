@@ -30,6 +30,7 @@ export default class Todo {
 
         const todoElement = document.createElement('div')
         todoElement.classList.add('todo')
+        todoElement.setAttribute('id', this.id)
 
         const checkBox = document.createElement('input')
         checkBox.setAttribute('type', 'checkbox')

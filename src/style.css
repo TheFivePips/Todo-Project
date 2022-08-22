@@ -85,9 +85,13 @@
 .main{
     grid-area: 1/2/2/3;
     background-color: aquamarine;
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-content: start;
+    /* display: grid; */
     /* needs to make gird items appear in an orderly way */
-    grid-template-columns: 1fr;
+    /* grid-template-columns: 1fr; */
     
 }
 .addTodoForm{
@@ -100,7 +104,7 @@
 
 }
 .todo{
-    /* width: 100%; */
+    width: 100%;
     height: 100px;
     margin: 10px;
     border: 1px solid black;
