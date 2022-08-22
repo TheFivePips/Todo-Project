@@ -1,8 +1,9 @@
 // this is the base webstie with no todos or dynamically created projects
-// it is the framework for the rest of the sites functionality
+// it is the framework for the rest of the sites functionality and where the dom manipulation occurs
 // it will export an initializeWebsite fucntion at the end that will be imported by index.js and ran from there
 import Logo from '../assets/StrykThru.png'
-import createNewProject  from './createProject'
+import createNewProject  from './createProject.js'
+import creatNewTodo from './createTodo.js'
 
 
 function createHeader(){
@@ -103,6 +104,7 @@ function createMain() {
     addTodoForm.classList.add('addtodoform')
 
     const addTodoInput = document.createElement('input')
+    addTodoInput.classList.add('todotxtinput')
     addTodoInput.setAttribute('type', 'text')
     addTodoInput.setAttribute('placeholder', 'New Todo Item')
     
@@ -132,16 +134,34 @@ function createMain() {
     addTodoPriority.appendChild(priority2)
     addTodoPriority.appendChild(priority3)
 
+    // const projectSelector = document.createElement('select')
+    // const projectOptions = document.querySelectorAll('.project')
+    // projectOptions.forEach((project) => {
+        
+    //     const projectOption = document.createElement('option')
+    //     projectOption.textContent = project.textContent
+    //     projectOption.setAttribute('value', project.textContent)
+
+    //     projectSelector.appendChild(projectOption)
+    // })
+
     
     const addTodoBtn = document.createElement('button')
     addTodoBtn.classList.add('addtodobtn')
     addTodoBtn.textContent = "+"
     addTodoBtn.setAttribute('type', 'submit')
     // this button needs to render a new todo and save the object in the relevant project array
+    addTodoBtn.addEventListener('click', function(event) {
+        event.preventDefault()
+        main.appendChild(creatNewTodo())
+
+    })
     
     addTodoForm.appendChild(addTodoInput)
     addTodoForm.appendChild(addTodoDate)
     addTodoForm.appendChild(addTodoPriority)
+    // addTodoForm.appendChild(projectSelector)
+
     addTodoForm.appendChild(addTodoBtn)
 
     main.appendChild(addTodoForm)

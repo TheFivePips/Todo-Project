@@ -4,7 +4,7 @@ const projects = []
 
 export default function createNewProject(){
     // remove the active class on all project btns? maybe add this later
-    
+    let projectTodos = []
     
     const newProject = document.createElement('button')
     newProject.classList.add('project')
