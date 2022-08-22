@@ -3,7 +3,7 @@
 // it will export an initializeWebsite fucntion at the end that will be imported by index.js and ran from there
 import Logo from '../assets/StrykThru.png'
 import createNewProject  from './createProject.js'
-import creatNewTodo from './createTodo.js'
+import createNewTodo from './createTodo.js'
 
 
 function createHeader(){
@@ -36,12 +36,14 @@ function createSideBar(){
     const projectFolder = document.createElement('div')
     projectFolder.classList.add('project-folder')
 
+    
     // defualt project
-    // const defualtProject = document.createElement('button')
-    // defualtProject.classList.add('defaultProject')
-    // defualtProject.textContent = 'Project 1'
-    // defualtProject.classList.add('active')
-
+    const defaultProject = document.createElement('button')
+    defaultProject.classList.add('defaultProject')
+    defaultProject.textContent = 'Today'
+    // defaultProject.classList.add('active')
+    
+    projectFolder.appendChild(defaultProject)
     
     const addProjectForm = document.createElement('form')
     addProjectForm.classList.add('projectForm')
@@ -64,9 +66,11 @@ function createSideBar(){
     addProjectBtn.textContent = "+"
     addProjectBtn.addEventListener("click", function(event) {
         event.preventDefault()
+        // this might be refactored into an events folder later
+
         // this should call the create a new project fucntion and return a btn that we can then add to the dom. 
         
-      console.log(projectFolder.lastChild);
+    //   console.log(projectFolder.lastChild);
         
         projectFolder.appendChild(createNewProject())
         // const projects = document.querySelectorAll('.project')
@@ -153,7 +157,7 @@ function createMain() {
     // this button needs to render a new todo and save the object in the relevant project array
     addTodoBtn.addEventListener('click', function(event) {
         event.preventDefault()
-        main.appendChild(creatNewTodo())
+        main.appendChild(createNewTodo())
 
     })
     
