@@ -18,6 +18,7 @@ export default class Project {
     getProjectId(){
         return this.id
     }
+   
     getProjectArr(){
         return this.arr
     }
@@ -43,11 +44,34 @@ export default class Project {
         editProjectBtn.classList.add('editProjectBtn')
         // maybe replace with an icon?
         editProjectBtn.textContent = "Edit"
+        editProjectBtn.addEventListener('click', function(event) {
+            event.preventDefault()
+            let editProjectName = prompt("What would you like the project to be called?")
+            projectBtn.textContent = editProjectName
+
+        })
     
         const deleteProjectBtn = document.createElement('button')
         deleteProjectBtn.classList.add('deleteProjectBtn')
         // replace with an icon?
         deleteProjectBtn.textContent = "Delete"
+        deleteProjectBtn.addEventListener('click', function(event){
+            event.preventDefault()
+            let targetId = event.target.parentElement.id
+            // look through the projects array and fine the project with the id that matched the target id then remove it from the array and remove the html
+            // console.log(projects);
+            projects.forEach((project) => {
+                if(project.id === targetId){
+                   let projectIndex = projects.indexOf(project)
+                   projects.splice(projectIndex,1)
+                   
+                   const projectsFolder = document.querySelector('.projectsFolder')
+                   projectsFolder.removeChild(event.target.parentElement)
+
+                }
+            })
+            // console.log(event.target);
+        })
     
         project.appendChild(projectBtn)
         project.appendChild(editProjectBtn)
