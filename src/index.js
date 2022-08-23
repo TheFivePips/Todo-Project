@@ -5,20 +5,22 @@ import {v4 as uuidv4} from 'uuid';
 import Project from './createNewProject'
 // import createProjectHtml from './createProjectHtml';
 import setActive from './setActive';
+import renderProjectTodos from './renderProjectTodos';
 
 
 const logo = document.querySelector('.logo')
 logo.src = Logo
 
-let defaultProjectArr = []
+export const defaultProjectArr = []
 
 export const projects = [defaultProjectArr]
 
-const main = document.querySelector('.main')
+const todoContainer = document.querySelector('.todoContainer')
 const defaultProject = document.querySelector('.defaultProject')
 defaultProject.setAttribute('id', uuidv4())
 defaultProject.addEventListener('click', function(event){
     setActive(event.target)
+    renderProjectTodos(defaultProject.id)
 })
 
 // probably gonna refactor these event listeners into their own modules
@@ -26,7 +28,7 @@ const addTodoBtn = document.querySelector('.addTodoBtn')
 addTodoBtn.addEventListener('click', function(event){
     event.preventDefault()
 
-    console.log(projects);
+    // console.log(projects);
     let todoTitle = document.querySelector('.todoTxtInput').value
     let todoDate = document.querySelector('.addTodoDate').value
     let todoPriority = document.querySelector('.addTodoPriority').value
@@ -38,15 +40,18 @@ addTodoBtn.addEventListener('click', function(event){
 
     const newTodo = new Todo(todoTitle, todoDate, todoPriority, projectID, uuidv4())
 
-    // look through the projects array and find the project with the matching projectID then use that projects internal addToProjectArray function  to add the newTodo
-    projects.forEach((project)=>{
-        if(project.id === projectID){
-            project.addToProjectArray()
-        }
+    // find the project in the project arry whos id matches the project id on the todo object then push the new todo to its internal array
+    
+    let currentProject = projects.find(element => element.id === projectID)
+    // console.log(currentProject);
+    if(!currentProject){
+        defaultProjectArr.push(newTodo)
+    }
+    else{
+        currentProject.arr.push(newTodo)
+    }
 
-    })
-
-    main.appendChild(newTodo.getTodoHTML())
+    todoContainer.appendChild(newTodo.getTodoHTML())
     document.querySelector('.todoTxtInput').value = ''
 })
 
@@ -58,6 +63,7 @@ addProjectBtn.addEventListener('click', function(event) {
 
     let projectName = document.getElementById('newProjectName').value
     let projectId = uuidv4()
+    
 
     const newProject = new Project(projectName, projectId)
 

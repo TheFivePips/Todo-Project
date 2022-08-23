@@ -36,7 +36,7 @@ export default class Project {
         projectBtn.addEventListener('click', function(event){
             
             setActive(event.target)
-            renderProjectTodos(event.target)
+            renderProjectTodos(event.target.parentElement.id)
         })
     
         const editProjectBtn = document.createElement('button')

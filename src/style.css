@@ -88,17 +88,23 @@
 .main{
     grid-area: 1/2/2/3;
     background-color: aquamarine;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
-    align-content: start;
-    /* display: grid; */
+    
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 8fr;
     /* needs to make gird items appear in an orderly way */
     /* grid-template-columns: 1fr; */
     
 }
+.todoContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-content: start;
+}
 .addTodoForm{
     margin: 10px;
+    grid-area: 1/1/2/2;
 }
 .addTodoBtn {
     width: 20px;
