@@ -2,7 +2,8 @@ import './style.css'
 import Logo from "./assets/StrykThru.png"
 import Todo from './createNewTodo'
 import {v4 as uuidv4} from 'uuid';
-import createNewProject from './createNewProject'
+import Project from './createNewProject'
+import createProjectHtml from './createProjectHtml';
 
 
 const logo = document.querySelector('.logo')
@@ -10,7 +11,7 @@ logo.src = Logo
 
 let defaultProject = []
 
-const projects = [defaultProject]
+export const projects = [defaultProject]
 
 const main = document.querySelector('.main')
 
@@ -27,7 +28,11 @@ addTodoBtn.addEventListener('click', function(event){
     
     // right now just do default project id and push all new todos to the default project arry of todo Objects
     const newTodo = new Todo(todoTitle, todoDate, todoPriority, defaultID, uuidv4())
-    defaultProject.push(newTodo)
+    // if default project is the only project, push to that array. if not push to the currently active array
+    if(projects.length === 1){
+        defaultProject.push(newTodo)
+    }
+    
     
     main.appendChild(newTodo.getTodoHTML())
 })
@@ -35,7 +40,15 @@ addTodoBtn.addEventListener('click', function(event){
 const projectFolder = document.querySelector('.projectsFolder')
 const addProjectBtn = document.querySelector('.addProjectBtn')
 addProjectBtn.addEventListener('click', function(event) {
+
     event.preventDefault()
-    projectFolder.appendChild(createNewProject())
+    let projectName = document.getElementById('newProjectName').value
+    let projectId = uuidv4()
+    const newProject = new Project(projectName, projectId)
+    projects.push(newProject)
+    projectFolder.appendChild(newProject.createProjectHtml())
+    const newProjectInput = document.getElementById('newProjectName')
+    newProjectInput.value = ''
+    
 
 })
