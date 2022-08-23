@@ -4,16 +4,19 @@ import Todo from './createNewTodo'
 import {v4 as uuidv4} from 'uuid';
 import Project from './createNewProject'
 import createProjectHtml from './createProjectHtml';
+import setActive from './setActive';
 
 
 const logo = document.querySelector('.logo')
 logo.src = Logo
 
-let defaultProject = []
+let defaultProjectArr = []
 
-export const projects = [defaultProject]
+export const projects = [defaultProjectArr]
 
 const main = document.querySelector('.main')
+const defaultProject = document.querySelector('.defaultProject')
+defaultProject.addEventListener('click', setActive)
 
 // probably gonna refactor these event listeners into their own modules
 const addTodoBtn = document.querySelector('.addTodoBtn')
@@ -23,14 +26,19 @@ addTodoBtn.addEventListener('click', function(event){
     let todoTitle = document.querySelector('.todoTxtInput').value
     let todoDate = document.querySelector('.addTodoDate').value
     let todoPriority = document.querySelector('.addTodoPriority').value
-    let defaultID = document.querySelector('.defaultProject').id
+
+    // if there are more than one project in the projects array, use the new project id. otherwise use the default id
+    if(projects.length === 1){
+        let projectID = document.querySelector('.defaultProject').id
+    }else {
+        let projectID = newProject.getProjectId()
+    }
     
     
-    // right now just do default project id and push all new todos to the default project arry of todo Objects
-    const newTodo = new Todo(todoTitle, todoDate, todoPriority, defaultID, uuidv4())
+    const newTodo = new Todo(todoTitle, todoDate, todoPriority, projectID, uuidv4())
     // if default project is the only project, push to that array. if not push to the currently active array
     if(projects.length === 1){
-        defaultProject.push(newTodo)
+        defaultProjectArr.push(newTodo)
     }
     
     
@@ -42,11 +50,17 @@ const addProjectBtn = document.querySelector('.addProjectBtn')
 addProjectBtn.addEventListener('click', function(event) {
 
     event.preventDefault()
+
     let projectName = document.getElementById('newProjectName').value
     let projectId = uuidv4()
+
     const newProject = new Project(projectName, projectId)
+
     projects.push(newProject)
+    console.log(projects);
+
     projectFolder.appendChild(newProject.createProjectHtml())
+
     const newProjectInput = document.getElementById('newProjectName')
     newProjectInput.value = ''
     

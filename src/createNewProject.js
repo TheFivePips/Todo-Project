@@ -5,6 +5,7 @@
 // 		-delete btn
 // 	-when you click the project, todos currently on the page should dissappear and todos from that projects todo array should populate
 import { projects } from "./index"
+import setActive from "./setActive"
 
 
 export default class Project {
@@ -31,19 +32,7 @@ export default class Project {
         projectBtn.classList.add('projectBtn')
         projectBtn.textContent = this.name
     
-        projectBtn.addEventListener('click', function() {
-            // add class of active and remove from all other projects
-            defaultProject = document.querySelector('.defaultProject')
-            defaultProject.classList.remove('active')
-            const projects = document.querySelectorAll('.project')
-            projects.forEach(project => {
-                if(project.classList.contains('active')){
-                    project.classList.remove('active')
-                }
-
-            });
-            project.classList.add('active')
-        })
+        projectBtn.addEventListener('click', setActive) 
     
         const editProjectBtn = document.createElement('button')
         editProjectBtn.classList.add('editProjectBtn')

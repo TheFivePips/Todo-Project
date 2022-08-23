@@ -26,6 +26,9 @@ export default class Todo {
     setTodoPriority(priority){
         this.priority = priority
     }
+    getTodoProjectId(){
+        return this.projectId
+    }
     getTodoHTML(){
 
         const todoElement = document.createElement('div')
@@ -42,7 +45,7 @@ export default class Todo {
         const todoDate = document.createElement('p')
         todoDate.textContent = this.date
         
-        const todoPriority =document.createElement('p')
+        const todoPriority = document.createElement('p')
         todoPriority.textContent = this.priority
 
         const editTodoBtn = document.createElement('button')
