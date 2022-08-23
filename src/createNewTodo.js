@@ -1,5 +1,7 @@
 // import { format } from 'date-fns'
 
+import { projects } from "."
+
 export default class Todo {
     constructor(title, date, priority, projectId, id) {
         this.title = title
@@ -58,7 +60,26 @@ export default class Todo {
         deleteTodoBtn.classList.add('deleteTodoBtn')
         deleteTodoBtn.setAttribute('type', 'submit')
         deleteTodoBtn.textContent = "Delete"
-        // deleteTodoBtn.addEventListener
+        deleteTodoBtn.addEventListener('click', function(e, projectId){
+            e.preventDefault()
+            // use the projectid found on the todo to find that project within the projects array. then use the target todoID to splice it out of that array
+            let DProject = projects.find(project => project.projectId === projectId)
+            let todoID = e.target.parentElement.id
+            // console.log(DProject);
+            DProject.forEach(elem => {
+                if(elem.id === todoID){
+                   let index = DProject.indexOf(elem);
+                   DProject.splice(index,1)
+                }
+                
+            })
+            // remove the html element from the page
+            const todoContainer = document.querySelector('.todoContainer')
+            todoContainer.removeChild(e.target.parentElement)
+
+            
+            
+        })
 
         todoElement.appendChild(checkBox)
         todoElement.appendChild(todoTitle)
