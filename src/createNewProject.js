@@ -6,6 +6,7 @@
 // 	-when you click the project, todos currently on the page should dissappear and todos from that projects todo array should populate
 import { projects } from "./index"
 import setActive from "./setActive"
+import renderProjectTodos  from "./renderProjectTodos"
 
 
 export default class Project {
@@ -32,7 +33,11 @@ export default class Project {
         projectBtn.classList.add('projectBtn')
         projectBtn.textContent = this.name
     
-        projectBtn.addEventListener('click', setActive) 
+        projectBtn.addEventListener('click', function(event){
+            
+            setActive(event.target)
+            renderProjectTodos(event.target)
+        })
     
         const editProjectBtn = document.createElement('button')
         editProjectBtn.classList.add('editProjectBtn')

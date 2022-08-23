@@ -1,5 +1,5 @@
 
-export default function setActive(){
+export default function setActive(target){
     const projects = document.querySelectorAll('.projectBtn')
     projects.forEach(project => {
         if(project.classList.contains('active')){
@@ -7,5 +7,5 @@ export default function setActive(){
         }
 
     });
-    this.classList.add('active')
+    target.classList.add('active')
 }
