@@ -39,6 +39,14 @@ export default class Todo {
 
         const checkBox = document.createElement('input')
         checkBox.setAttribute('type', 'checkbox')
+        checkBox.addEventListener('click', function(){
+            if(checkBox.checked){
+                todoTitle.style.textDecoration = "line-through"
+            }
+            else{
+                todoTitle.style.textDecoration = "none"
+            }
+        })
 
         const todoTitle = document.createElement('p')
         todoTitle.classList.add('todoTitle')
@@ -50,11 +58,14 @@ export default class Todo {
         const todoPriority = document.createElement('p')
         todoPriority.textContent = this.priority
 
-        const editTodoBtn = document.createElement('button')
-        editTodoBtn.setAttribute('type', 'submit')
-        editTodoBtn.classList.add('editTodoBtn')
-        editTodoBtn.textContent = "Edit"
-    //    editTodoBtn.addEventListener
+    //     const editTodoBtn = document.createElement('button')
+    //     editTodoBtn.setAttribute('type', 'submit')
+    //     editTodoBtn.classList.add('editTodoBtn')
+    //     editTodoBtn.textContent = "Edit"
+    //    editTodoBtn.addEventListener('click', function(e){
+    //     e.preventDefault()
+
+    //    })
 
         const deleteTodoBtn = document.createElement('button')
         deleteTodoBtn.classList.add('deleteTodoBtn')
@@ -85,7 +96,7 @@ export default class Todo {
         todoElement.appendChild(todoTitle)
         todoElement.appendChild(todoDate)
         todoElement.appendChild(todoPriority)
-        todoElement.appendChild(editTodoBtn)
+        // todoElement.appendChild(editTodoBtn)
         todoElement.appendChild(deleteTodoBtn)
 
         return todoElement
