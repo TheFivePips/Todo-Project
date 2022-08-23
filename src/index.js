@@ -2,10 +2,12 @@ import './style.css'
 import Logo from "./assets/StrykThru.png"
 import Todo from './createNewTodo'
 import {v4 as uuidv4} from 'uuid';
+import createNewProject from './createNewProject'
 
 
 const logo = document.querySelector('.logo')
 logo.src = Logo
+
 let defaultProject = []
 
 const projects = [defaultProject]
@@ -28,4 +30,12 @@ addTodoBtn.addEventListener('click', function(event){
     defaultProject.push(newTodo)
     
     main.appendChild(newTodo.getTodoHTML())
+})
+
+const projectFolder = document.querySelector('.projectsFolder')
+const addProjectBtn = document.querySelector('.addProjectBtn')
+addProjectBtn.addEventListener('click', function(event) {
+    event.preventDefault()
+    projectFolder.appendChild(createNewProject())
+
 })
