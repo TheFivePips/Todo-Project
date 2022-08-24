@@ -47,6 +47,8 @@ export default function getTodoHTML(newTodo){
         });
         const todoContainer = document.querySelector('.todoContainer')
         todoContainer.removeChild(e.target.parentElement)
+        localStorage.setItem('data', JSON.stringify(projects))
+
         
     })
 

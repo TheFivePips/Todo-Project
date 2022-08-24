@@ -6,31 +6,51 @@ import addTodoEvent from './eventListeners/addTodoEvent';
 import addProjectEvent from './eventListeners/addProjectEvent';
 import renderProjects from './renderProjects';
 import setActive from './setActive';
+import renderProjectTodos from './renderProjectTodos';
 
 
 const logo = document.querySelector('.logo')
 logo.src = Logo
 
-
-// check local storage for project data. if it exists overwrite the projects array?
-// if it doesnt exist, do nothing
-// this is the array where all of the projects and their todos will be saved
-// next must do local storage
-export const projects = []
+export let projects = []
 
 
-const defaultProject = new Project('Today', uuidv4())
-projects.push(defaultProject)
-renderProjects(projects)
-// set the default project to active by ....default
-const defaultProjectBtn = document.querySelector('.projectsFolder > .project')
-setActive(defaultProjectBtn)
+let data = JSON.parse(localStorage.getItem('data'))
 
 
-// two major event handlers
-const addTodoBtn = document.querySelector('.addTodoBtn')
-addTodoBtn.addEventListener('click', addTodoEvent)
+if(data && data.length>0){
+    projects = data
+    renderProjects(projects)
+    const defaultProjectBtn = document.querySelector('.projectsFolder > .project')
+    setActive(defaultProjectBtn)
+    renderProjectTodos(projects[0].id)
+    
+    
+    // the big two major event handlers
+    const addTodoBtn = document.querySelector('.addTodoBtn')
+    addTodoBtn.addEventListener('click', addTodoEvent)
+    
+    
+    const addProjectBtn = document.querySelector('.addProjectBtn')
+    addProjectBtn.addEventListener('click', addProjectEvent)
+}
+else if(data === null){
 
+    const defaultProject = new Project('Today', uuidv4())
+    projects.push(defaultProject)
+    renderProjects(projects)
+    // set the default project to active by ....default
+    const defaultProjectBtn = document.querySelector('.projectsFolder > .project')
+    
+    setActive(defaultProjectBtn)
+    
+    
+    // the big two major event handlers
+    const addTodoBtn = document.querySelector('.addTodoBtn')
+    addTodoBtn.addEventListener('click', addTodoEvent)
+    
+    
+    const addProjectBtn = document.querySelector('.addProjectBtn')
+    addProjectBtn.addEventListener('click', addProjectEvent)
+}
 
-const addProjectBtn = document.querySelector('.addProjectBtn')
-addProjectBtn.addEventListener('click', addProjectEvent)

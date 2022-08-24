@@ -22,6 +22,9 @@ export default function addTodoEvent(event){
  
     let currentProject = projects.find(element => element.id === projectID)
     currentProject.arr.push(newTodo)
+
+    localStorage.setItem('data', JSON.stringify(projects))
+    
     
    
     todoContainer.appendChild(getTodoHTML(newTodo))

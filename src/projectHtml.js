@@ -35,6 +35,9 @@ export default function createProjectHtml(newProject){
             }
             
         })
+        localStorage.setItem('data', JSON.stringify(projects))
+        
+
         projectBtn.textContent = editProjectName
 
     })
@@ -45,19 +48,27 @@ export default function createProjectHtml(newProject){
     deleteProjectBtn.textContent = "Delete"
     deleteProjectBtn.addEventListener('click', function(event){
         event.preventDefault()
-        let targetId = event.target.parentElement.id
-      
-        projects.forEach((project) => {
-            if(project.id === targetId){
-               let projectIndex = projects.indexOf(project)
-               projects.splice(projectIndex,1)
-               
-               const projectsFolder = document.querySelector('.projectsFolder')
-               projectsFolder.removeChild(event.target.parentElement)
-               
-            }
-        })
-      
+        if(projects.length === 1){
+            alert("You must have at least one Project open")
+            return
+        }else{
+
+            let targetId = event.target.parentElement.id
+          
+            projects.forEach((project) => {
+                if(project.id === targetId){
+                   let projectIndex = projects.indexOf(project)
+                   projects.splice(projectIndex,1)
+                   
+                   const projectsFolder = document.querySelector('.projectsFolder')
+                   projectsFolder.removeChild(event.target.parentElement)
+                   
+                }
+            })
+        localStorage.setItem('data', JSON.stringify(projects))
+            
+        }
+        
     })
 
     project.appendChild(projectBtn)

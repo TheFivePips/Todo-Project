@@ -18,6 +18,7 @@ export default function addProjectEvent (event) {
     const newProject = new Project(projectName, projectId)
 
     projects.push(newProject)
+    localStorage.setItem('data', JSON.stringify(projects))
   
     const newProjectHtml = createProjectHtml(newProject)
     setActive(newProjectHtml)
