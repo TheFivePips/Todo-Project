@@ -16,16 +16,16 @@
         <div class="sidebar">
             <h2 class="projectsTitle">Projects</h2>
             <form class="projectForm">
-                <input type="text" min="1" max="30" name="newProjectName" id="newProjectName" placeholder="New Project Name">
+                <input type="text" minlength="1" maxlength="30" required name="newProjectName" id="newProjectName" placeholder="New Project Name">
                 <button class="addProjectBtn" type="submit" value="submit">+</button>
             </form>
             <div class="projectsFolder">
-                <!-- <button class="defaultProject projectBtn active">Today</button> -->
+             
             </div>
         </div>
         <div class="main">
             <form class="addTodoForm">
-                <input type="text" name="newTodoItem" id="newTodoItem" class="todoTxtInput" placeholder="New Todo">
+                <input type="text" name="newTodoItem" id="newTodoItem" class="todoTxtInput" placeholder="New Todo" minlength="1" maxlength="30" required>
                 <input type="date" class="addTodoDate">
                 <select class="addTodoPriority">
                     <option value="High Priority">High Priority</option>
