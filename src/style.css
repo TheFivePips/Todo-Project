@@ -1,11 +1,12 @@
+
 .header{
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-template-rows: 1fr;
     width: 100%;
-    height: 200px;
+    height: 12.1rem;
     place-items: center;
-    background-color: lightcoral;
+    background-color: #febdbd;
     border-bottom: 2px solid black;
     
 }
@@ -13,13 +14,14 @@
     grid-area: 1/1/2/2;
     width: 100%;
     height: 100%;
-    
-    
+ 
 }
 .title{
     grid-area: 1/2/2/3;
     margin-right: 10rem;
-
+    font-size: 3.5rem;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(218, 248, 248);
 }
 .content{
     display: grid;
@@ -27,44 +29,35 @@
     grid-template-rows: 1fr;
     width: 100%;
     height: 80vh;
-    /* border: 1px solid black; */
+    background-color: lightblue;
 }
 .sidebar{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 6fr;
     border-right: 1px solid black;
-    
-
 }
 .projectsTitle{
     grid-area: 1/1/2/2;
     text-align: center;
     align-self: center;
     justify-self: center;
-    /* background-color: lightblue; */
+    background-color: lightblue;
     width: 100%;
-    /* height: 100%; */
+    color:rgb(92, 125, 188);
+    font-size: 2rem;
     
 }
 .projectsFolder{
     grid-area: 3/1/4/2;
     display: flex;
     flex-direction: column;
-
-    /* grid-template-columns: 1fr;
-    grid-template-rows: 1fr 6fr; */
     background-color: lightblue;
 }
-.defaultProject{
-    grid-area: 1/1/2/2;
-    
-    height: 50px;
-    margin: 10px;
-}
+
 .projectForm{
     grid-area: 2/1/3/2;
-    height: 50px;
+    height: 3rem;
     margin: 10px;
     padding: 0px;
     border-top: 1px solid black;
@@ -72,29 +65,23 @@
 
 }
 .addProjectBtn{
-    height: 20px;
-    width: 20px;
+    height: 1.3rem;
+    width: 1.3rem;
     margin: 10px;
 }
 .project{
-    /* grid-area: 2/1/3/2; */
     margin: 10px;
-    height: 60px;
+    height: 4rem;
     display: grid;
     grid-template-columns: 5fr 1fr 1fr;
     grid-template-rows: 1fr;
-    /* width: 80%; */
 }
 .main{
     grid-area: 1/2/2/3;
-    background-color: aquamarine;
-    
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 8fr;
-    /* needs to make gird items appear in an orderly way */
-    /* grid-template-columns: 1fr; */
-    
+    background-color: rgb(206, 237, 248);
 }
 .todoContainer{
     display: flex;
@@ -107,16 +94,17 @@
     grid-area: 1/1/2/2;
 }
 .addTodoBtn {
-    width: 20px;
-    height: 20px;
+    width: 1.3rem;
+    height: 1,3rem;
     margin: 10px;
 
 }
 .todo{
     width: 100%;
-    height: 100px;
+    height: 5rem;
     margin: 10px;
     border: 1px solid black;
+    border-radius: 5px;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
@@ -129,5 +117,5 @@
     border-top: 1px solid black;
 }
 .active{
-    border: 2px solid aqua;
+    border: 5px solid rgb(123, 205, 123);
 }
