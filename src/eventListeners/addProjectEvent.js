@@ -1,12 +1,15 @@
 import { projects } from '../index'
-import Project from '../createNewProject'
+import Project from '../NewProject'
 import {v4 as uuidv4} from 'uuid';
+import createProjectHtml from '../projectHtml';
+import setActive from '../setActive';
+import renderProjectTodos from '../renderProjectTodos';
 
 
 export default function addProjectEvent (event) {
+    event.preventDefault()
     const projectFolder = document.querySelector('.projectsFolder')
 
-    event.preventDefault()
 
     let projectName = document.getElementById('newProjectName').value
     let projectId = uuidv4()
@@ -15,9 +18,11 @@ export default function addProjectEvent (event) {
     const newProject = new Project(projectName, projectId)
 
     projects.push(newProject)
-    // console.log(projects);
-
-    projectFolder.appendChild(newProject.createProjectHtml())
+  
+    const newProjectHtml = createProjectHtml(newProject)
+    setActive(newProjectHtml)
+    projectFolder.appendChild(newProjectHtml)
+    renderProjectTodos(newProject.id)
 
     const newProjectInput = document.getElementById('newProjectName')
     newProjectInput.value = ''

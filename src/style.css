@@ -129,5 +129,5 @@
     border-top: 1px solid black;
 }
 .active{
-    background-color: aqua;
+    border: 2px solid aqua;
 }

@@ -1,11 +1,11 @@
 
-export default function setActive(target){
-    const projects = document.querySelectorAll('.projectBtn')
+export default function setActive(projectHtml){
+    const projects = document.querySelectorAll('.project')
     projects.forEach(project => {
         if(project.classList.contains('active')){
             project.classList.remove('active')
         }
 
     });
-    target.classList.add('active')
+    projectHtml.classList.add('active')
 }

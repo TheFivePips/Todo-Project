@@ -1,34 +1,36 @@
 import './style.css'
 import Logo from "./assets/StrykThru.png"
-import Todo from './createNewTodo'
 import {v4 as uuidv4} from 'uuid';
-import Project from './createNewProject'
-// import createProjectHtml from './createProjectHtml';
-import setActive from './setActive';
-import renderProjectTodos from './renderProjectTodos';
+import Project from './NewProject'
 import addTodoEvent from './eventListeners/addTodoEvent';
 import addProjectEvent from './eventListeners/addProjectEvent';
+import renderProjects from './renderProjects';
+import setActive from './setActive';
 
 
 const logo = document.querySelector('.logo')
 logo.src = Logo
 
-export const defaultProjectArr = []
 
-export const projects = [defaultProjectArr]
+// check local storage for project data. if it exists overwrite the projects array?
+// if it doesnt exist, do nothing
+// this is the array where all of the projects and their todos will be saved
+// next must do local storage
+export const projects = []
 
-// const todoContainer = document.querySelector('.todoContainer')
-const defaultProject = document.querySelector('.defaultProject')
-defaultProject.setAttribute('id', uuidv4())
-defaultProject.addEventListener('click', function(event){
-    setActive(event.target)
-    renderProjectTodos(defaultProject.id)
-})
 
-// probably gonna refactor these event listeners into their own modules
+const defaultProject = new Project('Today', uuidv4())
+projects.push(defaultProject)
+renderProjects(projects)
+// set the default project to active by ....default
+const defaultProjectBtn = document.querySelector('.projectsFolder > .project')
+setActive(defaultProjectBtn)
+
+
+// two major event handlers
 const addTodoBtn = document.querySelector('.addTodoBtn')
 addTodoBtn.addEventListener('click', addTodoEvent)
 
-// const projectFolder = document.querySelector('.projectsFolder')
+
 const addProjectBtn = document.querySelector('.addProjectBtn')
 addProjectBtn.addEventListener('click', addProjectEvent)
