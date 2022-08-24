@@ -4,10 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo Project</title>
+    <title>Todo-Project</title>
+    <!-- <link rel="stylesheet" href="./style.css"> -->
 </head>
 <body>
-    <div id="container"></div>
-    
+    <header class="header">
+        <img class="logo" src="./assets/StrykThru.png" alt="logo">
+        <h3 class="title">StrykThru</h3>
+    </header>
+    <div class="content">
+        <div class="sidebar">
+            <h2 class="projectsTitle">Projects</h2>
+            <form class="projectForm">
+                <input type="text" minlength="1" maxlength="30" required name="newProjectName" id="newProjectName" placeholder="New Project Name">
+                <button class="addProjectBtn" type="submit" value="submit">+</button>
+            </form>
+            <div class="projectsFolder">
+             
+            </div>
+        </div>
+        <div class="main">
+            <form class="addTodoForm">
+                <input type="text" name="newTodoItem" id="newTodoItem" class="todoTxtInput" placeholder="New Todo" minlength="1" maxlength="30" required>
+                <input type="date" class="addTodoDate">
+                <select class="addTodoPriority">
+                    <option value="High Priority">High Priority</option>
+                    <option value="Mid Priority">Mid Priority</option>
+                    <option value="Low Priority">Low Priority</option>
+                </select>
+                <button class="addTodoBtn" type="submit">+</button>
+            </form>
+            <div class="todoContainer"></div>
+
+        </div>
+    </div>
+    <div class="footer"></div>
 </body>
 </html>
