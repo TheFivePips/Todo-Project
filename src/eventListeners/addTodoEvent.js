@@ -12,21 +12,28 @@ export default function addTodoEvent(event){
     }
     const todoContainer = document.querySelector('.todoContainer')
 
-    let todoTitle = document.querySelector('.todoTxtInput').value
-    let todoDate = document.querySelector('.addTodoDate').value
-    let todoPriority = document.querySelector('.addTodoPriority').value
-
+    let todoTitle = document.querySelector('.todoTxtInput')
+    let todoDate = document.querySelector('.addTodoDate')
+    let todoPriority = document.querySelector('.addTodoPriority')
     let projectID = document.querySelector('.active').id
-
-    const newTodo = new Todo(todoTitle, todoDate, todoPriority, projectID, uuidv4())
- 
-    let currentProject = projects.find(element => element.id === projectID)
-    currentProject.arr.push(newTodo)
-
-    localStorage.setItem('data', JSON.stringify(projects))
     
+    if(todoTitle.checkValidity()) {
+        const newTodo = new Todo(todoTitle.value, todoDate.value, todoPriority.value, projectID, uuidv4())
+     
+        let currentProject = projects.find(element => element.id === projectID)
+        currentProject.arr.push(newTodo)
     
-   
-    todoContainer.appendChild(getTodoHTML(newTodo))
-    document.querySelector('.todoTxtInput').value = ''
+        localStorage.setItem('data', JSON.stringify(projects))
+        
+        
+       
+        todoContainer.appendChild(getTodoHTML(newTodo))
+        document.querySelector('.todoTxtInput').value = ''
+
+    }
+    else{
+        alert(todoTitle.validationMessage)
+    }
+
+
 }
